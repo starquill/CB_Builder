@@ -57,15 +57,21 @@ function GeneralInfo(){
       <button type="submit">Save</button>
       </form>
   </div>
-  
-  
   )
+}
+
+function Education(){
+  <div>
+    <h2>Education</h2>
+    <p>This is where we enter education details</p>
+  </div>
 }
 export default function App(){
   return(
     <div>
       <h1>CV Builder</h1>
       <GeneralInfo/>
+      <Education/>
     </div>
   )
 }
