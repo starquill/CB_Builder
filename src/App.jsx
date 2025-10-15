@@ -6,6 +6,7 @@ function GeneralInfo(){
     email:"johndoe@official.com",
     phone:"123-456-789",
   });
+  const [isEditing,setIsEditing]=useState(true);
   function handleNameChange(e){
     const {value,name}=e.target;
     setInfo(prevInfo=>({
@@ -13,9 +14,25 @@ function GeneralInfo(){
       [name]:value,
     }));
   }
+  function handleSubmit(e){
+    e.preventDefault();
+    setIsEditing(false);
+  }
+  if(!isEditing){
+    return(
+      <div>
+        <h2>General Information</h2>
+        <p>Name:{info.name}</p>
+        <p>Email:{info.email}</p>
+        <p>Phone:{info.phone}</p>
+        <button onClick={()=>setIsEditing(true)}>Edit</button>
+      </div>
+    );
+  }
   return(
   <div>
   <h2>General Info</h2>
+  <form onSubmit={handleSubmit}>
   <p>Name:{name}</p>
   <label htmlFor="name">Name:</label>
   <input type="text"
@@ -37,9 +54,8 @@ function GeneralInfo(){
     value={info.phone}
     onChange={handleNameChange}
      />
-     <pre>
-        <code>{JSON.stringify(info, null, 2)}</code>
-      </pre>
+      <button type="submit">Save</button>
+      </form>
   </div>
   
   
