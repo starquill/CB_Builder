@@ -32,3 +32,22 @@ input{
   border-radius: 6px;
   font-size: 1rem;
 }
+.display_view{
+  display: flex;
+  flex-direction: column;
+}
+button{
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1877f2;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-end;
+}
+button:hover{
+  background-color: #166fe5;
+}

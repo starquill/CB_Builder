@@ -21,7 +21,7 @@ function GeneralInfo(){
   }
   if(!isEditing){
     return(
-      <div>
+      <div className="display_view card-section">
         <h2>General Information</h2>
         <p>Name:{info.name}</p>
         <p>Email:{info.email}</p>
