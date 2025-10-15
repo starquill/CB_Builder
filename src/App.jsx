@@ -61,9 +61,28 @@ function GeneralInfo(){
 }
 
 function Education(){
+  const [educations,setEducations]=useState([
+    {
+      id:1,
+      school:'University of knowledge',
+      degree:'B.Tech',
+      date:'2022-2026'
+    },
+    {
+      id: 2,
+      school: 'Institute of Learning',
+      degree: 'M.S. in Software Engineering',
+      date: '2026 - 2028',
+    },
+  ])
   return (<div>
     <h2>Education</h2>
-    <p>This is where we enter education details</p>
+    {educations.map(education => (
+    <div className="education_item" key={education.id}>
+      <p><strong>School:</strong>{education.school}</p>
+      <p><strong>Degree:</strong> {education.degree}</p>
+      <p><strong>Date:</strong> {education.date}</p>
+    </div>))}
   </div>);
 }
 export default function App(){
