@@ -61,10 +61,10 @@ function GeneralInfo(){
 }
 
 function Education(){
-  <div>
+  return (<div>
     <h2>Education</h2>
     <p>This is where we enter education details</p>
-  </div>
+  </div>);
 }
 export default function App(){
   return(
