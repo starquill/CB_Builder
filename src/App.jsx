@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import './App.css';
 
 function GeneralInfo(){
   const [info,setInfo]=useState({
