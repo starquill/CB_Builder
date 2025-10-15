@@ -31,7 +31,7 @@ function GeneralInfo(){
     );
   }
   return(
-  <div>
+  <div className="card-section">
   <h2>General Info</h2>
   <form onSubmit={handleSubmit}>
   <p>Name:{name}</p>
