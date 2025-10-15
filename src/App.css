@@ -51,3 +51,19 @@ button{
 button:hover{
   background-color: #166fe5;
 }
+.education_item{
+  display: flex;
+  justify-content:  space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+.education_item:last-child{
+  border-bottom: none;
+}
+.delete_btn{
+  background-color: #fa3e3e;
+}
+.delete_btn:hover{
+  background-color: #e03030;
+}

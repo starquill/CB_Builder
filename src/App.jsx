@@ -95,14 +95,24 @@ function Education(){
     ]);
     setNewEdcation({school:'',degree:'',date:''});
   }
+  function handleDelete(id){
+    const updateEducations=educations.filter(education=>education.id!=id)
+    setEducations(updateEducations);
+  }
   return (<div>
     <h2>Education</h2>
     {educations.map(education => (
     <div className="education_item" key={education.id}>
+      <div className="item_details">
       <p><strong>School:</strong>{education.school}</p>
       <p><strong>Degree:</strong> {education.degree}</p>
       <p><strong>Date:</strong> {education.date}</p>
-    </div>))}
+    </div>
+      <button onClick={()=> handleDelete(education.id)} className="delete_btn">
+        Delete
+      </button>
+    </div>
+    ))}
     <hr />
     <form onSubmit={handleAdd}>
       <label htmlFor="school">School:</label>
