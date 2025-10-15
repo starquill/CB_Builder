@@ -16,3 +16,19 @@ h1{
   max-width: 800px;
   margin: 20px auto;
 }
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+label{
+  font-weight: bold;
+  font-size: 1rem;
+  color: #606770; 
+}
+input{
+  padding: 10px;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 1rem;
+}

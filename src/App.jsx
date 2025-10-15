@@ -34,7 +34,6 @@ function GeneralInfo(){
   <div className="card-section">
   <h2>General Info</h2>
   <form onSubmit={handleSubmit}>
-  <p>Name:{name}</p>
   <label htmlFor="name">Name:</label>
   <input type="text"
       id="name"
