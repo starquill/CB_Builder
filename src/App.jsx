@@ -92,7 +92,7 @@ function Education({educations,setEducations}){
     const updateEducations=educations.filter(education=>education.id!=id)
     setEducations(updateEducations);
   }
-  return (<div>
+  return (<div className="card-section">
     <h2>Education</h2>
     {educations.map(education => (
     <div className="education_item" key={education.id}>
