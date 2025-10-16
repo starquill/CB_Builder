@@ -56,7 +56,7 @@ function GeneralInfo({info,setInfo}){
 }
 
 function Education({educations,setEducations}){
-  const [newEducation,setNewEdcation]=useState({
+  const [newEducation,setNewEducation]=useState({
     school:'',
     degree:'',
     date:'',
@@ -75,7 +75,7 @@ function Education({educations,setEducations}){
   }
   function handleChange(e){
     const {name,value}=e.target;
-    setNewEdcation(prevEducation=>({
+    setNewEducation(prevEducation=>({
       ...prevEducation,
       [name]:value,
     }));
@@ -86,7 +86,7 @@ function Education({educations,setEducations}){
       ...educations,
       {...newEducation,id:crypto.randomUUID()},
     ]);
-    setNewEdcation({school:'',degree:'',date:''});
+    setNewEducation({school:'',degree:'',date:''});
   }
   function handleDelete(id){
     const updateEducations=educations.filter(education=>education.id!=id)
@@ -196,7 +196,7 @@ function Experience({experiences,setExperiences}) {
     );
   }
   return (
-    <div className="section_card">
+    <div className="card-section">
       <h2>Work Experience</h2>
       {experiences.map(experience => (
         <div key={experience.id} className="item_container">
@@ -258,7 +258,7 @@ export default function App(){
       date: '2024 - Present' },
   ]);
   return(
-    <div>
+    <div className="full">
       <h1>CV Builder</h1>
       <GeneralInfo info={info} setInfo={setInfo}/>
       <Education educations={educations} setEducations={setEducations}/>
