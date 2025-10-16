@@ -181,12 +181,100 @@ function Education(){
     </form>
   </div>);
 }
+function Experience() {
+  const [experiences, setExperiences] = useState([
+    {
+      id: 1,
+      company: 'Tech Solutions Inc.',
+      position: 'Software Developer',
+      date: '2024 - Present',
+    },
+  ]);
+
+  const [newExperience, setNewExperience] = useState({
+    company: '',
+    position: '',
+    date: '',
+  });
+
+  const [editingId, setEditingId] = useState(null);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setNewExperience(prev => ({ ...prev, [name]: value }));
+  }
+
+  function handleAdd(e) {
+    e.preventDefault();
+    setExperiences([
+      ...experiences,
+      { ...newExperience, id: crypto.randomUUID() },
+    ]);
+    setNewExperience({ company: '', position: '', date: '' });
+  }
+
+
+
+  function handleDelete(id) {
+    setExperiences(experiences.filter(exp => exp.id !== id));
+  }
+
+  function handleUpdate(id, e) {
+    const { name, value } = e.target;
+    setExperiences(
+      experiences.map(exp => {
+        if (exp.id === id) {
+          return { ...exp, [name]: value };
+        }
+        return exp;
+      })
+    );
+  }
+
+  return (
+    <div className="section_card">
+      <h2>Work Experience</h2>
+      {experiences.map(experience => (
+        <div key={experience.id} className="item_container">
+          {editingId === experience.id ? (
+            <form className="edit_form">
+              <input name="company" value={experience.company} onChange={e => handleUpdate(experience.id, e)} />
+              <input name="position" value={experience.position} onChange={e => handleUpdate(experience.id, e)} />
+              <input name="date" value={experience.date} onChange={e => handleUpdate(experience.id, e)} />
+              <button type="button" onClick={() => setEditingId(null)}>Save</button>
+            </form>
+          ) : (
+            <>
+              <div className="item_details">
+                <p><strong>Company:</strong> {experience.company}</p>
+                <p><strong>Position:</strong> {experience.position}</p>
+                <p><strong>Date:</strong> {experience.date}</p>
+              </div>
+              <div className="item_buttons">
+                <button onClick={() => setEditingId(experience.id)}>Edit</button>
+                <button onClick={() => handleDelete(experience.id)} className="delete_btn">Delete</button>
+              </div>
+            </>
+          )}
+        </div>
+      ))}
+      <hr />
+      <form onSubmit={handleAdd}>
+        <input name="company" placeholder="Company" value={newExperience.company} onChange={handleChange} />
+        <input name="position" placeholder="Position" value={newExperience.position} onChange={handleChange} />
+        <input name="date" placeholder="Date" value={newExperience.date} onChange={handleChange} />
+        <button type="submit">Add Experience</button>
+      </form>
+    </div>
+  );
+}
 export default function App(){
   return(
     <div>
       <h1>CV Builder</h1>
       <GeneralInfo/>
       <Education/>
+      <Experience/>
     </div>
   )
 }
