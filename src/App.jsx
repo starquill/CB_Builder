@@ -1,12 +1,7 @@
 import React,{useState} from "react";
 import './App.css';
 
-function GeneralInfo(){
-  const [info,setInfo]=useState({
-    name:"John doe",
-    email:"johndoe@official.com",
-    phone:"123-456-789",
-  });
+function GeneralInfo({info,setInfo}){
   const [isEditing,setIsEditing]=useState(true);
   function handleNameChange(e){
     const {value,name}=e.target;
@@ -60,21 +55,7 @@ function GeneralInfo(){
   )
 }
 
-function Education(){
-  const [educations,setEducations]=useState([
-    {
-      id:1,
-      school:'University of knowledge',
-      degree:'B.Tech',
-      date:'2022-2026'
-    },
-    {
-      id: 2,
-      school: 'Institute of Learning',
-      degree: 'M.S. in Software Engineering',
-      date: '2026 - 2028',
-    },
-  ]);
+function Education({educations,setEducations}){
   const [newEducation,setNewEdcation]=useState({
     school:'',
     degree:'',
@@ -181,29 +162,17 @@ function Education(){
     </form>
   </div>);
 }
-function Experience() {
-  const [experiences, setExperiences] = useState([
-    {
-      id: 1,
-      company: 'Tech Solutions Inc.',
-      position: 'Software Developer',
-      date: '2024 - Present',
-    },
-  ]);
-
+function Experience({experiences,setExperiences}) {
   const [newExperience, setNewExperience] = useState({
     company: '',
     position: '',
     date: '',
   });
-
   const [editingId, setEditingId] = useState(null);
-
   function handleChange(e) {
     const { name, value } = e.target;
     setNewExperience(prev => ({ ...prev, [name]: value }));
   }
-
   function handleAdd(e) {
     e.preventDefault();
     setExperiences([
@@ -212,13 +181,9 @@ function Experience() {
     ]);
     setNewExperience({ company: '', position: '', date: '' });
   }
-
-
-
   function handleDelete(id) {
     setExperiences(experiences.filter(exp => exp.id !== id));
   }
-
   function handleUpdate(id, e) {
     const { name, value } = e.target;
     setExperiences(
@@ -230,7 +195,6 @@ function Experience() {
       })
     );
   }
-
   return (
     <div className="section_card">
       <h2>Work Experience</h2>
@@ -269,12 +233,36 @@ function Experience() {
   );
 }
 export default function App(){
+  const [info,setInfo]=useState({
+    name:"John doe",
+    email:"johndoe@official.com",
+    phone:"123-456-789",
+  });
+  const [educations,setEducations]=useState([
+    {
+      id:1,
+      school:'University of knowledge',
+      degree:'B.Tech',
+      date:'2022-2026'
+    },
+    {
+      id: 2,
+      school: 'Institute of Learning',
+      degree: 'M.S. in Software Engineering',
+      date: '2026 - 2028',
+    },
+  ]);
+  const [experiences, setExperiences] = useState([
+    { id: 1, company: 'Tech Solutions Inc.',
+      position: 'Software Developer', 
+      date: '2024 - Present' },
+  ]);
   return(
     <div>
       <h1>CV Builder</h1>
-      <GeneralInfo/>
-      <Education/>
-      <Experience/>
+      <GeneralInfo info={info} setInfo={setInfo}/>
+      <Education educations={educations} setEducations={setEducations}/>
+      <Experience experiences={experiences} setExperiences={setExperiences} />
     </div>
   )
 }
