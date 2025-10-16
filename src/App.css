@@ -67,3 +67,12 @@ button:hover{
 .delete_btn:hover{
   background-color: #e03030;
 }
+.item_buttons{
+  display: flex;
+  gap: 10px;
+}
+.edit_form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}

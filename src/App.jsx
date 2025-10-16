@@ -80,6 +80,18 @@ function Education(){
     degree:'',
     date:'',
   });
+  const [educationId,setEducationId]=useState(null);
+  function handleUpdate(id,e){
+    const {name,value}=e.target;
+    const updateEducations=educations.map(edu=>
+    {
+      if(educationId===id)
+        return {...edu,[name]:value}
+    return edu;
+    }
+    )
+    setEducations(updateEducations);
+  }
   function handleChange(e){
     const {name,value}=e.target;
     setNewEdcation(prevEducation=>({
@@ -103,14 +115,42 @@ function Education(){
     <h2>Education</h2>
     {educations.map(education => (
     <div className="education_item" key={education.id}>
-      <div className="item_details">
-      <p><strong>School:</strong>{education.school}</p>
-      <p><strong>Degree:</strong> {education.degree}</p>
-      <p><strong>Date:</strong> {education.date}</p>
-    </div>
-      <button onClick={()=> handleDelete(education.id)} className="delete_btn">
-        Delete
-      </button>
+      {educationId===education.id?(
+        <form className="edit_form">
+          <input type="text"
+          name="school"
+          value={education.school}
+          onChange={e=>handleUpdate(education.id,e)}
+          />
+          <input
+                type="text"
+                name="degree"
+                value={education.degree}
+                onChange={e => handleUpdate(education.id, e)}
+              />
+              <input
+                type="text"
+                name="date"
+                value={education.date}
+                onChange={e => handleUpdate(education.id, e)}
+              />
+              <button type="button" onClick={()=>setEducationId(null)}>Save</button>
+        </form>
+      ):(
+      <>
+        <div className="item_details">
+        <p><strong>School:</strong>{education.school}</p>
+        <p><strong>Degree:</strong> {education.degree}</p>
+        <p><strong>Date:</strong> {education.date}</p>
+        </div>
+      <div className="item_buttons">
+        <button onClick={()=>setEducationId(education.id)}>Edit</button>
+        <button onClick={()=> handleDelete(education.id)} className="delete_btn">
+          Delete
+        </button>
+        </div>
+      </>
+      )}
     </div>
     ))}
     <hr />
